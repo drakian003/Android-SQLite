@@ -1,11 +1,22 @@
 package com.example.patryk.lab4.dao;
 
+import android.database.sqlite.SQLiteDatabase;
+
 import com.example.patryk.lab4.interfaces.IStudentGroupDAO;
 import com.example.patryk.lab4.tables.StudentGroupTable;
 
 import java.util.ArrayList;
 
 public class StudentGroupDAO implements IStudentGroupDAO {
+
+    String tableName = StudentGroupTable.TABLE_NAME;
+    String[] projection;
+    protected SQLiteDatabase db;
+
+    public StudentGroupDAO(SQLiteDatabase db) {
+        this.db = db;
+    }
+
     @Override
     public ArrayList<StudentGroupTable> selectAll() {
         return null;

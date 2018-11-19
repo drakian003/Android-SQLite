@@ -4,7 +4,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 public class StudentGroupTable {
 
-    private static final String TABLE_NAME = "Grupy_studenta";
+    public static final String TABLE_NAME = "Grupy_studenta";
     public static final String ID_COLUMN = "Id";
     public static final String STUDENT_ID_COLUMN = "Id_studenta";
     public static final String GROUP_ID_COLUMN = "Id_grupy";

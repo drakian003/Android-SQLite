@@ -4,6 +4,9 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.example.patryk.lab4.dao.GroupDAO;
+import com.example.patryk.lab4.dao.StudentDAO;
+import com.example.patryk.lab4.dao.StudentGroupDAO;
 import com.example.patryk.lab4.tables.Group;
 import com.example.patryk.lab4.tables.StudentGroupTable;
 import com.example.patryk.lab4.tables.Student;
@@ -12,11 +15,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "LAB4.db";
     private SQLiteDatabase db;
-
+    private StudentDAO studentDAO;
+    private GroupDAO groupDAO;
+    private StudentGroupDAO studentGroupDAO;
 
     public DatabaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, DATABASE_NAME, null, version);
         db = getWritableDatabase();
+        studentDAO = new StudentDAO(db);
+    }
+
+    public StudentDAO getStudentDAO() {
+        return studentDAO;
     }
 
     public SQLiteDatabase getDb() {

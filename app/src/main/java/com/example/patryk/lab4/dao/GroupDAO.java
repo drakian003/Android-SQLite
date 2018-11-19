@@ -12,9 +12,13 @@ import java.util.ArrayList;
 
 public class GroupDAO implements IGroupDAO {
     
-    String tableName;
+    String tableName = Group.TABLE_NAME;
     String[] projection;
     protected SQLiteDatabase db;
+
+    public GroupDAO(SQLiteDatabase db) {
+        this.db = db;
+    }
 
     public ArrayList<Group> selectAll() {
         Cursor cursor = db.query(

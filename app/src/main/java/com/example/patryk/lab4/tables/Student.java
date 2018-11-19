@@ -48,6 +48,10 @@ public class Student {
         this.lastName = lastName;
     }
 
+    public ArrayList<Group> getGroups() {
+        return groups;
+    }
+
     @Override
     public String toString() {
         return name + " " + lastName;

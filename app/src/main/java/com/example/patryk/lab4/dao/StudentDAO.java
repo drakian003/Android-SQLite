@@ -4,9 +4,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 
-import com.example.patryk.lab4.DataManager;
-import com.example.patryk.lab4.DatabaseHelper;
 import com.example.patryk.lab4.interfaces.IStudentDAO;
 import com.example.patryk.lab4.tables.Student;
 
@@ -14,12 +13,13 @@ import java.util.ArrayList;
 
 public class StudentDAO implements IStudentDAO {
 
-    String tableName;
+    String tableName = Student.TABLE_NAME;
     String[] projection;
-    Context context;
-    SQLiteDatabase db;
+    protected SQLiteDatabase db;
 
-
+    public StudentDAO(SQLiteDatabase db) {
+        this.db = db;
+    }
 
     public ArrayList<Student> selectAll() {
 
