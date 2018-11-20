@@ -12,10 +12,21 @@ import java.util.ArrayList;
 public class DataManager {
 
     private DatabaseHelper myDb;
+    private static DataManager instance;
 
-    public DataManager(Context context) {
-        myDb = new DatabaseHelper(context, null, null, 1);
+    private DataManager() {
+    }
 
+    public static DataManager getInstance() {
+        if (instance == null) {
+            instance = new DataManager();
+        }
+
+        return instance;
+    }
+
+    public void setMyDb(DatabaseHelper myDb) {
+        this.myDb = myDb;
     }
 
     public StudentAdapter viewAllStudents(Context context) {
