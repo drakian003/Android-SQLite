@@ -1,10 +1,9 @@
 package com.example.patryk.lab4;
 
 import android.content.Context;
+import android.widget.ListView;
 
-import com.example.patryk.lab4.dao.GroupDAO;
-import com.example.patryk.lab4.dao.StudentDAO;
-import com.example.patryk.lab4.dao.StudentGroupDAO;
+
 import com.example.patryk.lab4.tables.Student;
 
 import java.util.ArrayList;
@@ -13,6 +12,16 @@ public class DataManager {
 
     private DatabaseHelper myDb;
     private static DataManager instance;
+    private Context mainContext;
+    private ListView mainListView;
+
+    public void setMainContext(Context mainContext) {
+        this.mainContext = mainContext;
+    }
+
+    public void setMainListView(ListView mainListView) {
+        this.mainListView = mainListView;
+    }
 
     private DataManager() {
     }
@@ -35,5 +44,18 @@ public class DataManager {
         return adapter;
     }
 
+    public void reloadStudents() {
+        mainListView.setAdapter(null);
+        mainListView.setAdapter(this.viewAllStudents(mainContext));
+    }
+
+    public void removeStudent(Student student){
+        myDb.getStudentDAO().delete(student);
+        reloadStudents();
+    }
+
+    public void editStudent(Student student){
+        myDb.getStudentDAO().update(student);
+    }
 
 }

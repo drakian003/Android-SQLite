@@ -4,7 +4,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 
-public class Student {
+public class Student{
 
     public static final String TABLE_NAME = "Studenci";
     public static final String ID_COLUMN = "Id_studenta";
@@ -17,11 +17,10 @@ public class Student {
     private ArrayList<Group> groups;
 
 
-    public Student(int id, String firstName, String lastName, ArrayList<Group> groups) {
+    public Student(int id, String firstName, String lastName) {
         this.id = id;
         this.name = firstName;
         this.lastName = lastName;
-        this.groups = groups;
     }
 
     public int getId() {
@@ -46,10 +45,6 @@ public class Student {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public ArrayList<Group> getGroups() {
-        return groups;
     }
 
     @Override

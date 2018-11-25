@@ -40,10 +40,10 @@ public class StudentDAO implements IStudentDAO {
                     cursor.getColumnIndexOrThrow(Student.ID_COLUMN));
             String itemName = cursor.getString(
                     cursor.getColumnIndexOrThrow(Student.NAME_COLUMN));
-            String itemSurName = cursor.getString(
+            String itemLastName = cursor.getString(
                     cursor.getColumnIndexOrThrow(Student.LAST_NAME_COLUMN));
 
-            students.add(new Student((int) itemId, itemName, itemSurName, null));
+            students.add(new Student((int) itemId, itemName, itemLastName));
         }
         cursor.close();
 
@@ -64,18 +64,18 @@ public class StudentDAO implements IStudentDAO {
 
         long itemId = 0;
         String itemName = "";
-        String itemSurName = "";
+        String itemLastName = "";
         while (cursor.moveToNext()) {
             itemId = cursor.getLong(
                     cursor.getColumnIndexOrThrow(Student.ID_COLUMN));
             itemName = cursor.getString(
                     cursor.getColumnIndexOrThrow(Student.NAME_COLUMN));
-            itemSurName = cursor.getString(
+            itemLastName = cursor.getString(
                     cursor.getColumnIndexOrThrow(Student.LAST_NAME_COLUMN));
         }
         cursor.close();
 
-        Student student = new Student((int) itemId, itemName, itemSurName, null);
+        Student student = new Student((int) itemId, itemName, itemLastName);
         return student;
 
     }
@@ -96,8 +96,8 @@ public class StudentDAO implements IStudentDAO {
         values.put(Student.NAME_COLUMN, student.getName());
         values.put(Student.LAST_NAME_COLUMN, student.getLastName());
         return db.update(Student.TABLE_NAME, values, Student.ID_COLUMN + "=" + student.getId(), null) > 0;
-
     }
+
 
     public boolean delete(Student student) {
         return db.delete(Student.TABLE_NAME, Student.ID_COLUMN + "=" + student.getId(), null) > 0;
