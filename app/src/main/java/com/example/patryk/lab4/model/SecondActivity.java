@@ -21,8 +21,6 @@ public class SecondActivity extends AppCompatActivity {
         int student_id = extras.getInt("ID");
         list = findViewById(R.id.listView2);
         DataManager dataManager = DataManager.getInstance();
-        dataManager.setSecondContext(this);
-        dataManager.setSecondListView(list);
-        dataManager.loadStudentGroups(student_id);
+        dataManager.loadStudentGroups(this,list,student_id);
     }
 }

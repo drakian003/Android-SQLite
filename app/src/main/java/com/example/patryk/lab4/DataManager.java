@@ -15,28 +15,17 @@ public class DataManager {
 
     private DatabaseHelper myDb;
     private static DataManager instance;
-    private Context mainContext;
     private ListView mainListView;
-    private Context secondContext;
-    private ListView secondListView;
+    private Context mainContext;
 
-
-    public void setMainContext(Context mainContext) {
-        this.mainContext = mainContext;
-    }
 
     public void setMainListView(ListView mainListView) {
         this.mainListView = mainListView;
     }
 
-    public void setSecondContext(Context secondContext) {
-        this.secondContext = secondContext;
+    public void setMainContext(Context mainContext) {
+        this.mainContext = mainContext;
     }
-
-    public void setSecondListView(ListView secondListView) {
-        this.secondListView = secondListView;
-    }
-
 
     private DataManager() {
     }
@@ -59,28 +48,28 @@ public class DataManager {
         return adapter;
     }
 
-    public void reloadStudents() {
+    public void reloadStudents(Context mainContext, ListView mainListView) {
         mainListView.setAdapter(null);
         mainListView.setAdapter(this.viewAllStudents(mainContext));
     }
 
     public void removeStudent(Student student) {
         myDb.getStudentDAO().delete(student);
-        reloadStudents();
+        reloadStudents(this.mainContext, this.mainListView);
     }
 
     public void editStudent(Student student) {
         myDb.getStudentDAO().update(student);
     }
 
-    public GroupAdapter viewStudentGroups(Context context, int id){
+    public GroupAdapter viewStudentGroups(Context context, int id) {
         ArrayList<Group> groups = myDb.getStudentGroupDAO().selectAll(id);
         GroupAdapter adapter = new GroupAdapter(context, groups);
         return adapter;
     }
 
-    public void loadStudentGroups(int id) {
+    public void loadStudentGroups(Context secondContext, ListView secondListView, int id) {
         secondListView.setAdapter(null);
-        secondListView.setAdapter(this.viewStudentGroups(mainContext, id));
+        secondListView.setAdapter(this.viewStudentGroups(secondContext, id));
     }
 }
