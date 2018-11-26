@@ -31,6 +31,12 @@ public class Group {
         this.name = name;
     }
 
+
+    @Override
+    public String toString() {
+        return getName();
+    }
+
     public static void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE " + TABLE_NAME + "(" + ID_COLUMN + " INTEGER PRIMARY KEY AUTOINCREMENT, " + NAME_COLUMN + " TEXT)");
     }

@@ -14,7 +14,14 @@ public class StudentGroupTable {
     }
 
     public static void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE " + TABLE_NAME + "(ID INTEGER PRIMARY KEY AUTOINCREMENT, STUDENT_ID INTEGER, GROUP_ID INTEGER)");
+        db.execSQL("CREATE TABLE "
+                + TABLE_NAME + "("
+                + ID_COLUMN + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + STUDENT_ID_COLUMN + " INTEGER, "
+                + GROUP_ID_COLUMN + " INTEGER, "
+                + "CONSTRAINT FK_Student FOREIGN KEY (" + STUDENT_ID_COLUMN + ") REFERENCES " + Student.TABLE_NAME + "(" + Student.ID_COLUMN + ") ON DELETE CASCADE,"
+                + "CONSTRAINT FK_Group FOREIGN KEY (" + GROUP_ID_COLUMN + ") REFERENCES " + Group.TABLE_NAME + "(" + Group.ID_COLUMN + ") ON DELETE CASCADE)");
+
     }
 
     public static void onUpgrade(SQLiteDatabase db) {

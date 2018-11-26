@@ -23,6 +23,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, version);
         db = getWritableDatabase();
         studentDAO = new StudentDAO(db);
+        groupDAO = new GroupDAO(db);
+        studentGroupDAO = new StudentGroupDAO(db);
     }
 
     public StudentDAO getStudentDAO() {
@@ -33,8 +35,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db;
     }
 
+    public GroupDAO getGroupDAO() {
+        return groupDAO;
+    }
+
+    public StudentGroupDAO getStudentGroupDAO() {
+        return studentGroupDAO;
+    }
+
     @Override
     public void onCreate(SQLiteDatabase db) {
+        db.execSQL("PRAGMA foreign_keys=ON;");
         Student.onCreate(db);
         Group.onCreate(db);
         StudentGroupTable.onCreate(db);
@@ -66,6 +77,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO "+Group.TABLE_NAME+"("+Group.ID_COLUMN+", "+Group.NAME_COLUMN+") VALUES (null, 'Laboratoryjna_1')");
         db.execSQL("INSERT INTO "+Group.TABLE_NAME+"("+Group.ID_COLUMN+", "+Group.NAME_COLUMN+") VALUES (null, 'Laboratoryjna_2')");
         db.execSQL("INSERT INTO "+Group.TABLE_NAME+"("+Group.ID_COLUMN+", "+Group.NAME_COLUMN+") VALUES (null, 'Laboratoryjna_3')");
+
+        db.execSQL("INSERT INTO "+StudentGroupTable.TABLE_NAME+"("+StudentGroupTable.ID_COLUMN+", "+StudentGroupTable.STUDENT_ID_COLUMN+", "+StudentGroupTable.GROUP_ID_COLUMN+") VALUES (null, 1, 1)");
+        db.execSQL("INSERT INTO "+StudentGroupTable.TABLE_NAME+"("+StudentGroupTable.ID_COLUMN+", "+StudentGroupTable.STUDENT_ID_COLUMN+", "+StudentGroupTable.GROUP_ID_COLUMN+") VALUES (null, 1, 2)");
+        db.execSQL("INSERT INTO "+StudentGroupTable.TABLE_NAME+"("+StudentGroupTable.ID_COLUMN+", "+StudentGroupTable.STUDENT_ID_COLUMN+", "+StudentGroupTable.GROUP_ID_COLUMN+") VALUES (null, 2, 1)");
+        db.execSQL("INSERT INTO "+StudentGroupTable.TABLE_NAME+"("+StudentGroupTable.ID_COLUMN+", "+StudentGroupTable.STUDENT_ID_COLUMN+", "+StudentGroupTable.GROUP_ID_COLUMN+") VALUES (null, 3, 3)");
+        db.execSQL("INSERT INTO "+StudentGroupTable.TABLE_NAME+"("+StudentGroupTable.ID_COLUMN+", "+StudentGroupTable.STUDENT_ID_COLUMN+", "+StudentGroupTable.GROUP_ID_COLUMN+") VALUES (null, 4, 4)");
     }
 
 

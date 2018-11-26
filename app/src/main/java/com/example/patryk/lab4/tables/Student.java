@@ -4,7 +4,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
 
-public class Student{
+public class Student {
 
     public static final String TABLE_NAME = "Studenci";
     public static final String ID_COLUMN = "Id_studenta";
@@ -53,7 +53,11 @@ public class Student{
     }
 
     public static void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE " + TABLE_NAME + "(" + ID_COLUMN + " INTEGER PRIMARY KEY AUTOINCREMENT, " + NAME_COLUMN + " TEXT, "+LAST_NAME_COLUMN+" TEXT)");
+        db.execSQL("CREATE TABLE "
+                + TABLE_NAME + "("
+                + ID_COLUMN + " INTEGER PRIMARY KEY AUTOINCREMENT, "
+                + NAME_COLUMN + " TEXT, "
+                + LAST_NAME_COLUMN + " TEXT)");
     }
 
     public static void onUpgrade(SQLiteDatabase db) {

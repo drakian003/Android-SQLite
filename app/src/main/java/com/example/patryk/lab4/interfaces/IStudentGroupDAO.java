@@ -1,13 +1,14 @@
 package com.example.patryk.lab4.interfaces;
 
+import com.example.patryk.lab4.tables.Group;
 import com.example.patryk.lab4.tables.StudentGroupTable;
 
 import java.util.ArrayList;
 
 public interface IStudentGroupDAO {
-    public ArrayList<StudentGroupTable> selectAll();
+    public ArrayList<Group> selectAll(int id);
 
-    public StudentGroupTable selectById(int id);
+    public Group selectById(int id);
 
     public int insert(StudentGroupTable studentGroupTable);
 

@@ -1,4 +1,4 @@
-package com.example.patryk.lab4;
+package com.example.patryk.lab4.Adapters;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -12,6 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.patryk.lab4.DataManager;
+import com.example.patryk.lab4.R;
 import com.example.patryk.lab4.model.EditActivity;
 import com.example.patryk.lab4.model.SecondActivity;
 import com.example.patryk.lab4.tables.Group;
@@ -42,6 +44,9 @@ public class StudentAdapter extends ArrayAdapter<Student> {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), SecondActivity.class);
+                Bundle extras = new Bundle();
+                extras.putInt("ID",student.getId());
+                intent.putExtras(extras);
                 getContext().startActivity(intent);
             }
         });
